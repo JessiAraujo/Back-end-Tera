@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>escolha</title>
+</head>
+<body>
+    <h1>Escolha</h1>
+
+    <p>Sua sessão expirou. O que você deseja fazer?</p>
+
+    <button onclick="continuarLogado()">Continuar Logado</button>
+    <button onclick="fazerLoginNovamente()">Fazer Login Novamente</button>
+
+    <script>
+      function continuarLogado() {
+        // Redirecionar para a página de perfil
+        window.location.href = '/perfil';
+      }
+
+      function fazerLoginNovamente() {
+        // Redirecionar para a página de login
+        window.location.href = '/login';
+      }
+    </script>
+
+</body>
+</html>

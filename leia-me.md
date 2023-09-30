@@ -12,6 +12,9 @@ express
 mongoose
 nodemon
 jsonwebtoken
+multer
+cookie-parser
+
 
 ONDE PAREI
  ver se a página de perfil (/perfil) esta configurada  para responder a solicitações GET 
