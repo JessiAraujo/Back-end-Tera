@@ -108,7 +108,7 @@ app.get('/login', (req, res) => {
     // Define o token como um cookie
     res.cookie('token', token, { httpOnly: true });
 
-    console.log('Antes do redirecionamento para /perfil');
+    console.log('Antes do redirecionamento para /perfil então até aqui está ok');
 
     res.redirect('/perfil');
 
