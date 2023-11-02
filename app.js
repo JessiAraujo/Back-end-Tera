@@ -16,7 +16,8 @@ const port = 4000;
 
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static("views"));
+// app.use(express.static("views"));
+app.use(express.static(__dirname));
 app.use("/uploads", express.static("uploads"));
 app.set("view engine", "ejs");
 
@@ -36,7 +37,8 @@ const Usuario = mongoose.model("Usuario", {
 });
 
 app.get("/cadastro.html", (req, res) => {
-  res.sendFile(__dirname + "/views/cadastro.html");
+  // res.sendFile(__dirname + "/views/cadastro.html");
+  res.sendFile(__dirname + "/cadastro.html");
 });
 
 app.post("/cadastro", async (req, res) => {
@@ -70,7 +72,8 @@ app.get("/usuarios", async (req, res) => {
 });
 
 app.get("/login", (req, res) => {
-  res.sendFile(__dirname + "/views/login.html");
+  // res.sendFile(__dirname + "/views/login.html");
+  res.sendFile(__dirname + "/login.html");
 });
 
 app.post("/login", async (req, res) => {
@@ -120,7 +123,8 @@ app.get("/perfil", verificaToken, (req, res) => {
       const nomeUsuario = req.query.nome || usuario.nome;
       const fotoUsuario = req.query.foto || usuario.foto;
   
-      res.render(__dirname + "/views/perfil.html", { nomeUsuario, fotoUsuario });
+      // res.render(__dirname + "/views/perfil.html", { nomeUsuario, fotoUsuario });
+      res.render(__dirname + "/perfil.html", { nomeUsuario, fotoUsuario });
   
 
   
@@ -132,14 +136,16 @@ app.get("/perfil", verificaToken, (req, res) => {
   
   console.log("para verificar se perfil esta ok");
 
-  res.sendFile(__dirname + "/views/perfil.html");
+  // res.sendFile(__dirname + "/views/perfil.html");
+  res.sendFile(__dirname + "/perfil.html");
 });
 
 app.post("/perfil", (req, res) => {});
 
 
 app.get("/escolha", (req, res) => {
-  res.sendFile(__dirname + "/views/escolha.html");
+  // res.sendFile(__dirname + "/views/escolha.html");
+  res.sendFile(__dirname + "/escolha.html");
 });
 
 
@@ -188,7 +194,8 @@ function verificaToken(req, res, next) {
 
 
 app.get("/configuracao", (req, res) => {
-  res.sendFile(__dirname + "/views/configuracao.html");
+  // res.sendFile(__dirname + "/views/configuracao.html");
+  res.sendFile(__dirname + "/configuracao.html");
 });
 
 app.post("/atualizar-perfil", verificaToken, async (req, res) => {
