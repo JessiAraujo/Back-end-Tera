@@ -137,7 +137,7 @@ app.get("/perfil", verificaToken, (req, res) => {
 
 app.post("/perfil", (req, res) => {});
 
-/
+
 app.get("/escolha", (req, res) => {
   res.sendFile(__dirname + "/views/escolha.html");
 });
