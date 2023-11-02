@@ -1,66 +1,83 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>perfil</title>
 </head>
+
 <body>
-  
+
     <script>
         function verificarToken() {
-            
-          fetch('/perfil')
-            .then(response => {
-              if (!response.ok) {
-                throw new Error(response.status);
-              }
-              return response.json();
-            })
-            .then(data => {
-              // Processar os dados normalmente
-              console.log(data);
-            })
-            .catch(error => {
-              // Redirecionar para a página de escolha se o erro for 401 (não autorizado)
-              if (error.message === '401') {
-                window.location.href = '/escolha';
-              } else {
-                // Outro tipo de erro, lidar conforme necessário
-                console.error('Erro:', error);
-              }
-            });
+            fetch('/perfil')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(response.status);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log(data);
+                    document.getElementById('nomeUsuario').innerText = data.nome || getCookie("nomeUsuario");
+                document.getElementById('imagemPerfil').src = `/uploads/${data.foto}?t=${Date.now()}`;
+
+
+                })
+                .catch(error => {
+                    if (error.message === '401') {
+                        window.location.href = '/escolha';
+                    } else {
+                        console.error('Erro:', error);
+                    }
+                });
         }
-      
-        // Verificar o token a cada 5 segundos
+
+    // Função para obter o valor de um cookie
+    function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+
+
         setInterval(verificarToken, 5000);
-      </script>
-         
-    
 
-  <!-- para garantir que a nova imagem de perfil seja carregada, adc timestamp p evitar o cache do navegador -->
-  <img src="/uploads/imagemaleatoria.jpg?t=<%= Date.now() %>" alt="Foto do Perfil">
+    </script>
 
 
+    <img src="/uploads/imagemaleatoria.jpg?t=<%= Date.now() %>" alt="Foto do Perfil">
 
-    <ul> 
-    <li>
-      <a href=" /configuracao" >Configuração</a>
-    </li>
-</ul>
+    <!-- <img id="imagemPerfil" src="<%= fotoUsuario %>?t=<%= Date.now() %>" alt="Foto do Perfil"> -->
+
+    <ul>
+        <li>
+            <a href=" /configuracao">Configuração</a>
+        </li>
+    </ul>
 
 
-    <a href="/login">Voltar para a página de login</a> <br>
-    
+
     <br>
 
 
-<a href="/logout">Sair</a> <!-- criar uma rota de logout -->
-
-
-
-
-
-
+    <a href="/logout">Sair</a> <!-- criar uma rota de logout -->
+    <!-- <p id="nomeUsuario"></p>  -->  
+    <p id="nomeUsuario"></p>
 </body>
+
+
+
+
+<div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
 </html>

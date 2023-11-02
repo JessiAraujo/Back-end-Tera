@@ -6,24 +6,48 @@
     <title>escolha</title>
 </head>
 <body>
+    <!-- <script>
+        window.exibirCaixaEscolha = function () {
+            const resposta = window.confirm('Sua sessão expirou. O que você deseja fazer?');
+            if (resposta) {
+                // Continuar logado, redirecionar para a página de perfil
+                window.location.href = '/perfil';
+            } else {
+                // Fazer login novamente, redirecionar para a página de login
+                window.location.href = '/login';
+            }
+        }; -->
+    <!-- </script> -->
     <h1>Escolha</h1>
-
     <p>Sua sessão expirou. O que você deseja fazer?</p>
-
     <button onclick="continuarLogado()">Continuar Logado</button>
     <button onclick="fazerLoginNovamente()">Fazer Login Novamente</button>
-
     <script>
       function continuarLogado() {
-        // Redirecionar para a página de perfil
-        window.location.href = '/perfil';
-      }
+        console.log('Clicou em continuarLogado'); 
+        fetch('/perfil')
+            .then(response => {
+                console.log('Resposta da requisição:', response); 
+                if (!response.ok) {
+                    throw new Error(response.status);
+                }
+              
+                window.location.href = '/perfil';
+            })
+            .catch(error => {
+                console.error('Erro ao verificar token:', error); 
+            
+                window.location.href = '/escolha';
+            });
+    }
 
-      function fazerLoginNovamente() {
+    function fazerLoginNovamente() {
         // Redirecionar para a página de login
         window.location.href = '/login';
-      }
-    </script>
+    }
+
+</script>
+    
 
 </body>
 </html>

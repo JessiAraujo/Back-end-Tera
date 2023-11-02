@@ -6,16 +6,22 @@
     <title>configuração</title>
 </head>
 <body>
-    <!-- alterar imagem de perfil 
-
-     alterar nome de usuario -->
-     
+   
     <h2>Configurações</h2>
-    <form action="/perfil" method="POST" enctype="multipart/form-data">
-        <label for="foto">Trocar de Foto de Perfil:</label>
-        <input type="file" name="foto" id="foto">
-        <button type="submit">Salvar</button>
-      </form>
+    <form action="/atualizar-foto" method="POST" enctype="multipart/form-data">
+      <label for="foto">Trocar de Foto de Perfil:</label>
+      <input type="file" name="foto" id="foto">
+      <br>
+      <label for="nome">Alterar Nome de Usuário:</label>
+      <input type="text" name="nome" id="nome" value="<%= usuario.nome %>">
+      <br>
+      <button type="submit">Salvar</button>
+    </form>
+    
+
       
 </body>
+
+
+
 </html>
