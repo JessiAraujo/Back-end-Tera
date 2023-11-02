@@ -17,3 +17,5 @@ O JavaScript está usando a API `fetch` para realizar a verificação da sessão
 Rota /atualizar-foto que processa o upload de uma nova foto de perfil usando o middleware `multer`.
 Está salvando no banco de dados porém não consigo substituir pela imagem nova 
 
+Acesse a URL do projeto 
+https://jessiaraujo.github.io/Back-end-Tera/
